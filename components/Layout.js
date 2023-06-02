@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Container } from "@nextui-org/react";
 
 function Layout({ children, title, content }) {
   return (
@@ -12,11 +13,15 @@ function Layout({ children, title, content }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-			<Header />
+      <Container>
 
-      <main className="100vh">{children}</main>
+        <Header />
 
-			<Footer />
+        <main>{children}</main>
+
+        <Footer />
+
+      </Container>
     </>
   );
 }

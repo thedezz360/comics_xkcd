@@ -1,57 +1,59 @@
 import React from "react";
-import { Container } from "@nextui-org/react";
-import "../styles/Home.module.css";
 
-import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import Header from "components/Header";
-import Footer from "components/Footer";
 import Layout from "components/Layout";
 
 import fs from "node:fs/promises";
 
-function index({ latestComics }) {
+import algoliasearch from "algoliasearch"
+import { useI18n } from "context/i18n";
+
+function Index({ latestComics }) {
+	
+	//usamos el context
+	const {t} = useI18n()
+	console.log(useI18n)
+	console.log(t);
+
   return (
     <Layout
-      title="xkcd - comics for developers"
+      title={t("TITLE_HEAD")}
       content="Comics for developers"
     >
-      <Container>
-        <h2 className="text-5xl font-bold text-center mb-10 ">Latest Comics</h2>
+      
+			<h2 className="text-5xl font-bold text-center mb-10 ">{t("LATEST_COMICS")}</h2>
 
-        <section className="grid grid-cols-1 gap-4 max-w-6xl m-auto sm:grid-cols-2 xl:grid-cols-3 ">
-          {latestComics.map((comic) => {
-            return (
-              <Link
-                key={comic.id}
-                href={`/comic/${comic.id}`}
-                className="mb-4 pb-4"
-              >
-                <h3 className="font-semibold text-lg text-center mb-2">
-                  {comic.title}
-                </h3>
+			<section className="grid grid-cols-1 gap-4 max-w-6xl m-auto sm:grid-cols-2 xl:grid-cols-3 ">
+				{latestComics.map((comic) => {
+					return (
+						<Link
+							key={comic.id}
+							href={`/comic/${comic.id}`}
+							className="mb-4 pb-4"
+						>
+							<h3 className="font-semibold text-lg text-center mb-2">
+								{comic.title}
+							</h3>
 
-                <Image
-                  src={comic.img}
-                  alt={comic.alt}
-                  width={comic.width}
-                  height={comic.height}
-                  className="m-auto"
-                />
-              </Link>
-            );
-          })}
-        </section>
+							<Image
+								src={comic.img}
+								alt={comic.alt}
+								width={comic.width}
+								height={comic.height}
+								className="m-auto"
+							/>
+						</Link>
+					);
+				})}
+			</section>
 
-       
-      </Container>
     </Layout>
   );
 }
 
-export default index;
+export default Index;
 
 //function para obtener los comics
 export async function getStaticProps() {

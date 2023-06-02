@@ -3,6 +3,8 @@ next UI -> para los estilos
 npm install @nextui-org/react
 npm install bricks.js --save , masonry -> descartado
 npm i masonic, masonry
+npm install algoliasearch, para la busqueda
+
 
 
 ### notes
@@ -16,4 +18,5 @@ ej: ../../components/Header.js --> /components/Header.js
 
 
 ### video 
-4:57:00
+https://www.youtube.com/watch?v=pFT8wD2uRSE
+6:38:00
